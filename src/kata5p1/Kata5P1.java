@@ -17,7 +17,7 @@ public class Kata5P1 {
         } catch (SQLException ex) {
             System.out.println("" + ex.getMessage());
         }
-        String sql = "SELECT * FROM PEOPLE";
+        /*String sql = "SELECT * FROM PEOPLE";
         
         try {
             Statement stmt = db.createStatement();
@@ -39,7 +39,24 @@ public class Kata5P1 {
                 System.out.println("" + ex.getMessage());
             }
             }
+        }*/
+        
+        String sql = "CREATE TABLE IF NOT EXISTS EMAIL (\n"
+                + " Id integer PRIMARY KEY AUTOINCREMENT, \n"
+                + " Mail TEXT NOT NULL);";
+        try {
+            Statement stmt = db.createStatement();
+            stmt.execute(sql);
+        } catch (SQLException ex) {
+                System.out.println("" + ex.getMessage());
+        } finally {
+            if (db != null) {
+                try {
+                    db.close();
+                } catch (SQLException ex) {
+                    System.out.println("" + ex.getMessage());
+                }
+            }
         }
     }
-    
 }
